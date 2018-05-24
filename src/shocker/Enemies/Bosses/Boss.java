@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package shocker.Enemies.Bosses;
-import shocker.Enemies.Enemy;
+
 /**
  *
  * @author warham_905444
