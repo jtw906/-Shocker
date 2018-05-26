@@ -7,8 +7,8 @@ public class GameContainer implements Runnable{
 	private Thread thread;
 	private boolean running = false;
 	private final double UPDATE_CAP = 1.0/60.0;
-	private int width = 1600 ,height = 900;
-	private float scale = 1f;
+	private int width = 320 ,height = 240;
+	private float scale = 4f;
 	private String title = "ShockerEngine v1.0";
 	private Window window;
 	private Renderer renderer;

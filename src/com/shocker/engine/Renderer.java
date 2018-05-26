@@ -19,7 +19,7 @@ public class Renderer {
 		if((x<0||x>=pW||y<0||y>=pH)||value == 0xffff00ff) {
 			return;
 		}
-		p[x+y * pW] = value;
+		p[x + y * pW] = value;
 	}
 	public void drawImage(Image image,int offx, int offy) {
 		for(int y = 0; y< image.getHeight();y++) {
