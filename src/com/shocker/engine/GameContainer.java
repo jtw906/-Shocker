@@ -1,5 +1,8 @@
 package com.shocker.engine;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 public class GameContainer implements Runnable{
 	private Thread thread;
 	private boolean running = false;
@@ -9,13 +12,17 @@ public class GameContainer implements Runnable{
 	private String title = "ShockerEngine v1.0";
 	private Window window;
 	private Renderer renderer;
-	public GameContainer(){
-		
+	private Input input;
+	private AbstractGame game;
+	
+	public GameContainer(AbstractGame g){
+		game = g;
 	}
 	public void start() {
 		window = new Window(this);
 		renderer = new Renderer(this);
 		thread = new Thread(this);
+		input = new Input(this);
 		thread.run();
 	}
 	public void stop() {
@@ -44,19 +51,24 @@ public class GameContainer implements Runnable{
 				unprocessedTime -= UPDATE_CAP;
 				render = true;
 				//TODO: Update Game
+				game.update(this, (float)(UPDATE_CAP));
+				input.update();
+				
 				if(frameTime>=1.0) {
 					frameTime=0;
 					fps = frame;
 					frame = 0;
-					
+					System.out.println("fps: " + fps);
 				}
 			}
 			if(render){
 				//TODO: Render game
+				
 				renderer.clear();
+				game.render(this, renderer);
 				window.update();
 				frame++;
-				System.out.println("fps: " + fps);
+				
 			}
 			else {
 				try {
@@ -72,10 +84,7 @@ public class GameContainer implements Runnable{
 	private void dispose() {
 		
 	}
-	public static void main(String args[]) {
-		GameContainer gc = new GameContainer();
-		gc.start();
-	}
+	
 	public int getWidth() {
 		return width;
 	}
@@ -102,5 +111,8 @@ public class GameContainer implements Runnable{
 	}
 	public Window getWindow() {
 		return window;
+	}
+	public Input getInput() {
+		return input;
 	}
 }

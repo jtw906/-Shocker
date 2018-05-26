@@ -44,4 +44,10 @@ public class Window {
 	public Canvas getCanvas() {
 		return canvas;
 	}
+	public JFrame getFrame() {
+		return frame;
+	}
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
 }
